@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Retro Tag - Contact</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .button {
+            background-color: #2575fc;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 20px 0;
+        }
+
+        .button:hover {
+            background-color: #6a11cb;
+        }
+
+        input, textarea, select {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 5px;
+            border: 1px solid #2575fc;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .arrows {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+
+        .arrow {
+            background-color: transparent;
+            border: none;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .arrow:hover {
+            opacity: 0.7;
+        }
+
+        select {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 1.1em;
+            border: 1px solid #2575fc;
+            padding: 10px;
+            border-radius: 5px;
+            position: relative;
+            z-index: 10;  
+        }
+
+        .music-player {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        audio {
+            width: 250px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            color: white;
+        }
+
+        .small-text {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slides">
+            <!-- contact thingyyy -->
+            <div class="slide">
+                <div class="form-container">
+                    <h1>Contact Tasty</h1>
+                    <form id="contact-form">
+                        <select name="reason" id="reason" required>
+                            <option value="Mod apps">Mod applications</option>
+                            <option value="Updates">Updates</option>
+                            <option value="Business inquiries">Business inquiries</option>
+                        </select>
+                        <textarea name="message" id="message" placeholder="Enter your message..." class="message-box" required></textarea>
+                        <button type="submit" class="button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- report system -->
+            <div class="slide">
+                <div class="form-container">
+                    <h1>Report a Player</h1>
+                    <form id="report-form">
+                        <input type="text" id="playerUsername" placeholder="Username of player" required>
+                        <select id="reportType" required>
+                            <option value="Cheating">Cheating</option>
+                            <option value="Toxicity">Toxicity</option>
+                            <option value="Hate Speech">Hate Speech</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <textarea id="description" placeholder="Describe the incident..." class="message-box" required></textarea>
+                        <label class="small-text">Upload Screenshots/recordings to streamable.com OR gofile.io OR file.io</label>
+                        <input type="text" id="proof" placeholder="Link to the proof (URL)" required>
+                        <button type="submit" class="button">Submit Report</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- download stuff -->
+            <div class="slide">
+                <h1>Download Retro Tag</h1>
+                <a href="https://www.meta.com/en-gb/experiences/memory-tag/9773357752694304/" class="button">Download Now</a>
+            </div>
+
+            <!-- credits -->
+            <div class="slide">
+                <h1>Credits</h1>
+                <p>Developed by @Resiz on DISCORD :D</p>
+            </div>
+        </div>
+
+        <!-- arrows -->
+        <div class="arrows">
+            <button class="arrow" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="arrow" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </div>
+
+    <!-- music player -->
+    <div class="music-player">
+        <audio id="audio-player" controls>
+            <source src="gay.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script>
+        // dear future me, this is fixed!
+        document.addEventListener("click", function() {
+            var audio = document.getElementById("audio-player");
+            audio.play();  
+        });
+
+        let currentSlide = 0;
+
+        function moveSlide(direction) {
+            const slides = document.querySelector('.slides');
+            const slideCount = document.querySelectorAll('.slide').length;
+            currentSlide = (currentSlide + direction + slideCount) % slideCount;
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const reason = document.getElementById('reason').value;
+            const message = document.getElementById('message').value;
+
+            if (message.trim() === "") {
+                alert("Message cannot be empty.");
+                return;
+            }
+
+            const data = {
+                content: `Contact from: ${reason}\nMessage: ${message}`,
+            };
+
+            sendToWebhook(data);
+        });
+
+        
+        document.getElementById('report-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const playerUsername = document.getElementById('playerUsername').value;
+            const reportType = document.getElementById('reportType').value;
+            const description = document.getElementById('description').value;
+            const proofLink = document.getElementById('proof').value;
+
+            if (playerUsername.trim() === "" || description.trim() === "" || proofLink.trim() === "") {
+                alert("All fields are required.");
+                return;
+            }
+
+            const data = {
+                content: `**Report for Player**: ${playerUsername}\n**Type**: ${reportType}\n**Description**: ${description}\n**Proof Link**: ${proofLink}`,
+            };
+
+            sendToWebhook(data);
+        });
+
+        
+        function sendToWebhook(data) {
+            fetch('https://discord.com/api/webhooks/1346232469602435132/JKg0mtZzoB8CH2PnM3p3L8aUJFVz4Aj8q1BoQTZ2tqE49hgXpiF3ulXJ8U7bE4pDZLcI', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert("Your report or message has been sent!");
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert("Your report or message has been sent!");
+            });
+        }
+
+        
+        document.querySelectorAll('select').forEach(function(selectElement) {
+            selectElement.addEventListener('click', function() {
+                this.focus();
+            });
+        });
+    </script>
+</body>
+</html>
